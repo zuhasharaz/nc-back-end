@@ -2,7 +2,7 @@
 
 ### Background
 
-We will be building the API which we used in the Northcoders News Sprint during the Front End block of the course.
+We will be building the API which to use in the Northcoders News Sprint during the Front End block of the course.
 
 Our database will be MongoDB. Your Mongoose models have been created for you so that you can see what the data should look like.
 
