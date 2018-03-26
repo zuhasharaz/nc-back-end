@@ -5,7 +5,8 @@ const UserSchema = new Schema({
   username: {
     type: String,
     unique: true,
-    lowercase: true
+    lowercase: true,
+    required: true
   },
   name: {
     type: String,
@@ -13,8 +14,7 @@ const UserSchema = new Schema({
   },
   avatar_url: {
     type: String,
-    required: true,
-    lowercase: true
+    required: true
   }
 });
 
