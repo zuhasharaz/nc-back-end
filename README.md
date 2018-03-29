@@ -31,10 +31,9 @@ There are also some methods that can be called on the documents that get returne
 
 ### Step 1 - Seeding
 
-The test database has already been seeded for you, so you only need to write a seed file for the development database.
+Data has been provided for both testing and development environments so you will need to write a seed function to seed your database. You should think about how you will write your seed file to use either test data or dev data depending on the environment that you're running in.
 
-1.  The data for users, articles and topics has been provided in CSV format (comma separated values). This is a common export format for spreadsheets. You will need to parse this data to make it available within your JavaScript application.
-2.  You will need to seed the topics, followed by the articles and the users. Each article should belong to a topic, referenced by a topic's \_id property. Each article should also have a random number of comments. Each comment should have been created by a random user (referenced by their \_id property) and should also belong to a specific article (referenced by its \_id property too). Use a library such as [faker](https://www.npmjs.com/package/faker) or [chance](https://www.npmjs.com/package/chance) to generate random comments.
+1.  You will need to seed the topics, followed by the articles and the users. Each article should belong to a topic, referenced by a topic's \_id property. Each article should also have a random number of comments. Each comment should have been created by a random user (referenced by their \_id property) and should also belong to a specific article (referenced by its \_id property too). Use a library such as [faker](https://www.npmjs.com/package/faker) or [chance](https://www.npmjs.com/package/chance) to generate random comments.
 
 ### Step 2 - Building and Testing
 
@@ -67,6 +66,16 @@ GET /api/topics/:topic_id/articles
 ```
 
 Return all the articles for a certain topic
+
+```
+POST /api/topics/:topic_id/articles
+```
+
+Add a new article to a topic. This route requires a JSON body with title and body key value pairs
+e.g: {
+    "title": "this is my new article title"
+    "body": "This is my new article content"
+  }
 
 ```
 GET /api/articles
