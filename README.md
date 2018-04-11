@@ -49,25 +49,25 @@ Data has been provided for both testing and development environments so you will
 
 ### Routes
 
-```
+``` http
 GET /api
 ```
 
 Serves an HTML page with documentation for all the available endpoints
 
-```
+``` http
 GET /api/topics
 ```
 
 Get all the topics
 
-```
+``` http
 GET /api/topics/:topic_id/articles
 ```
 
 Return all the articles for a certain topic
 
-```
+``` http
 POST /api/topics/:topic_id/articles
 ```
 
@@ -77,46 +77,52 @@ e.g: {
     "body": "This is my new article content"
   }
 
-```
+``` http
 GET /api/articles
 ```
 
 Returns all the articles
 
+``` http
+GET /api/articles/:article_id
 ```
+
+Get an individual article
+
+``` http
 GET /api/articles/:article_id/comments
 ```
 
 Get all the comments for a individual article
 
-```
+``` http
 POST /api/articles/:article_id/comments
 ```
 
 Add a new comment to an article. This route requires a JSON body with a comment key and value pair
 e.g: {"comment": "This is my new comment"}
 
-```
+``` http
 PUT /api/articles/:article_id
 ```
 
 Increment or Decrement the votes of an article by one. This route requires a vote query of 'up' or 'down'
 e.g: /api/articles/:article_id?vote=up
 
-```
+``` http
 PUT /api/comments/:comment_id
 ```
 
 Increment or Decrement the votes of a comment by one. This route requires a vote query of 'up' or 'down'
 e.g: /api/comments/:comment_id?vote=down
 
-```
+``` http
 DELETE /api/comments/:comment_id
 ```
 
 Deletes a comment
 
-```
+``` http
 GET /api/users/:username
 ```
 
