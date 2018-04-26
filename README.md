@@ -72,10 +72,7 @@ POST /api/topics/:topic_id/articles
 ```
 
 Add a new article to a topic. This route requires a JSON body with title and body key value pairs
-e.g: {
-    "title": "this is my new article title"
-    "body": "This is my new article content"
-  }
+e.g: `{ "title": "this is my new article title", "body": "This is my new article content"}`
 
 ``` http
 GET /api/articles
