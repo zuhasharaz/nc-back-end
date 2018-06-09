@@ -1,3 +1,4 @@
+const { Comment } = require("../models");
 const createUserRef = userDocs => {
   return userDocs.reduce((acc, userObj) => {
     acc[userObj.username] = userObj._id;
@@ -13,11 +14,11 @@ const createArticleRef = articleDocs => {
 };
 
 const formatArticleData = (articleData, userRef) => {
-  return articleData.map(articleDatum => {
+  return articleData.map(article => {
     return {
-      ...articleDatum,
-      belongs_to: articleDatum.topic,
-      created_by: userRef[articleDatum.created_by]
+      ...article,
+      belongs_to: article.topic,
+      created_by: userRef[article.created_by]
     };
   });
 };
@@ -31,11 +32,12 @@ const formatCommentData = (commentData, userRef, articleRef) => {
     };
   });
 };
+
 module.exports = {
   createUserRef,
   createArticleRef,
   formatArticleData,
-  formatCommentData,
+  formatCommentData
 };
 
 
