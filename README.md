@@ -21,7 +21,7 @@ NC News was built using the following, so make sure that you have them installed
 
 If you would like to see how the site and endpoints look, you can try it on Heroku here:
 
-* [NCNews](//need to hoist)
+* [NC News](https://ncnewsapi.herokuapp.com/)
 
 The Databse for this site is hosted on MLab which you can check out here:
 
@@ -82,7 +82,9 @@ http://localhost:9090/api
 
 You can see if this is working by typing
 
-```http://localhost:9090/topics
+```http
+
+http://localhost:9090/topics
 ```
 This should return you an array of topics.
 

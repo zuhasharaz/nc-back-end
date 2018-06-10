@@ -104,15 +104,6 @@ describe("/northcoders-news", () => {
           expect(res.body).to.eql({ message: `404 - Page Not Found` });
         });
     });
-
-      it('GET sends status 200 and object containing ONE article by ID', () => {
-      return request
-        .get(`/api/articles/${articleDocs[0]._id}`)
-        .expect(200)
-        .then((res) => {
-          expect(res.body.articleData.body).to.equal("I find this existence challenging");
-        });
-    });
     it("GET returns comments for an individual article", () => {
       return request
         .get(`/api/articles/${articleDocs[0]._id}/comments`)
@@ -277,6 +268,6 @@ describe("/northcoders-news", () => {
         });
     });
   })
-  })
+})
 
 

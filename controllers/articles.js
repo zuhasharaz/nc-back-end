@@ -80,8 +80,12 @@ exports.addComment = (req, res, next) => {
 
 
 
-
 exports.increaseArticleVote = (req, res, next) => {
+  // if (vote !== "up" && vote !== "down")
+  //   return next({
+  //     status: 500,
+  //     message: `INTERNAL SERVER ERR`
+  //   });
   let voteCount = 0;
   if (req.query.vote === "up") voteCount++;
   if (req.query.vote === "down") voteCount--;
@@ -97,3 +101,4 @@ exports.increaseArticleVote = (req, res, next) => {
     })
     .catch(next);
 };
+
