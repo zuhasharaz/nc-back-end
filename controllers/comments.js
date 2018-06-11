@@ -32,3 +32,20 @@ exports.deleteCommentById = (req, res, next) => {
     })
     .catch(next);
 };
+exports.increaseCommentVote = (req, res, next) => {
+  let voteCount = 0;
+  if (req.query.vote === "up") voteCount++;
+  if (req.query.vote === "down") voteCount--;
+  if (req.query.vote !== "up" && req.query.vote !== "down")
+    return next({ status: 400 });
+
+  Comment.findByIdAndUpdate(
+    { _id: req.params.comment_id },
+    { $inc: { votes: voteCount } },
+    { new: true }
+  )
+    .then(comment => {
+      res.status(201).send(comment);
+    })
+    .catch(next);
+};
