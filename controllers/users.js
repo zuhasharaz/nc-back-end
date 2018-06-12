@@ -1,4 +1,4 @@
-const { Topic, Article, User } = require("../models");;
+const { Topic, Article, User } = require("../models");
 
 exports.getUsers = (req, res, next) => {
   User.find()
@@ -7,8 +7,6 @@ exports.getUsers = (req, res, next) => {
     })
     .catch(next);
 };
-
-
 
 exports.getUsersByUsername = (req, res, next) => {
   User.findOne({ username: req.params.username })

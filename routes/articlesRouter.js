@@ -7,21 +7,16 @@ const {
   increaseArticleVote
 } = require("../controllers/articles");
 
-articleRouter
-.route("/")
-.get(getArticles)
-
-articleRouter.route("/:article_id")
-.get(getArticleById)
+articleRouter.route("/").get(getArticles);
 
 articleRouter
-.route('/:article_id/comments')
-.get(getCommentsByArticleId)
-.post(addComment);
-  
-  articleRouter
-  .route('/article_id?')
-  .put(increaseArticleVote)
+  .route("/:article_id")
+  .get(getArticleById)
+  .put(increaseArticleVote);
 
+articleRouter
+  .route("/:article_id/comments")
+  .get(getCommentsByArticleId)
+  .post(addComment);
 
 module.exports = articleRouter;

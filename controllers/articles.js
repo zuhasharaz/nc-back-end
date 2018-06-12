@@ -1,7 +1,6 @@
-const {Article, Comment}  = require("../models");
+const { Article, Comment } = require("../models");
 
-
-exports.getArticles = (req, res, next) =>  {
+exports.getArticles = (req, res, next) => {
   Article.find()
     .lean()
     .then(allArticles => {
@@ -16,16 +15,17 @@ exports.getArticles = (req, res, next) =>  {
       articles.forEach((article, i) => {
         article.comments = commentsCounts[i];
       });
-      if (articles.length === 0) return next({ status: 404 })
-      res.send({ articles })
+      res.send({ articles });
     })
     .catch(next);
-}
+};
 
 exports.getArticleById = (req, res, next) => {
+  if (req.params.article_id.length !== 24) return next({ status: 400 });
+
   Article.findById(req.params.article_id)
-    .populate('created_by', 'username -_id')
-    .then((article) => {
+    .populate("created_by", "username -_id")
+    .then(article => {
       const articleData = {
         _id: article._id,
         title: article.title,
@@ -34,17 +34,18 @@ exports.getArticleById = (req, res, next) => {
         topic: article.topic,
         votes: article.votes
       };
-      if(articles.length === 0) return next({ status: 404 })
-      res.send({articleData});
+
+      res.send({ articleData });
     })
     .catch(next);
 };
 
 exports.getCommentsByArticleId = (req, res, next) => {
+  if (req.params.article_id.length !== 24) return next({ status: 400 });
   Comment.find({ belongs_to: req.params.article_id })
-    .populate('created_by')
-    .then((commentData) => {
-      const comments = commentData.map((comment) => {
+    .populate("created_by")
+    .then(commentData => {
+      const comments = commentData.map(comment => {
         let { _id, body, votes } = comment;
         return {
           _id,
@@ -57,8 +58,7 @@ exports.getCommentsByArticleId = (req, res, next) => {
       });
       return comments;
     })
-    .then((comments) => {
-      
+    .then(comments => {
       res.status(200).send({ comments });
     })
     .catch(next);
@@ -76,16 +76,9 @@ exports.addComment = (req, res, next) => {
       res.status(201).json(newComment);
     })
     .catch(next);
-}
-
-
+};
 
 exports.increaseArticleVote = (req, res, next) => {
-  // if (vote !== "up" && vote !== "down")
-  //   return next({
-  //     status: 500,
-  //     message: `INTERNAL SERVER ERR`
-  //   });
   let voteCount = 0;
   if (req.query.vote === "up") voteCount++;
   if (req.query.vote === "down") voteCount--;
@@ -101,4 +94,3 @@ exports.increaseArticleVote = (req, res, next) => {
     })
     .catch(next);
 };
-
