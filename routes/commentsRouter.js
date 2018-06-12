@@ -6,19 +6,12 @@ const {
   increaseCommentVote
 } = require("../controllers/comments");
 
+commentsRouter.route("/").get(getComments);
 
 commentsRouter
-.route("/")
-.get(getComments);
-
-
-commentsRouter
-.route("/:comment_id")
-.get(getCommentsById)
-.delete(deleteCommentById)
-
-commentsRouter
-.route("/comment_id?")
-.put(increaseCommentVote);
+  .route("/:comment_id")
+  .get(getCommentsById)
+  .delete(deleteCommentById)
+  .put(increaseCommentVote);
 
 module.exports = commentsRouter;
