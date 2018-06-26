@@ -16,3 +16,4 @@ exports.getUsersByUsername = (req, res, next) => {
     })
     .catch(next);
 };
+
