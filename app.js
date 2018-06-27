@@ -1,5 +1,5 @@
 const DB_URL = process.env.DB_URL || require("./config").DB_URL;
-
+const cors = require("cors");
 const express = require("express");
 const app = require("express")();
 const mongoose = require("mongoose");
@@ -9,6 +9,8 @@ const apiRouter = require("./routes/apiRouter");
 mongoose.connect(DB_URL).then(() => {
   console.log(`Connected to the DB on ${DB_URL}...`);
 });
+
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use("/api", apiRouter);
